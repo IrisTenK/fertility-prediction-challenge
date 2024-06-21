@@ -83,25 +83,10 @@ def predict_outcomes(df, background_df=None, model_path="model.joblib"):
     ## This script contains a bare minimum working example
     if "nomem_encr" not in df.columns:
         print("The identifier variable 'nomem_encr' should be in the dataset")
-
-    ## Create imputer to impute missing values in the pipeline
-    imputer = KNNImputer(n_neighbors=2, weights="uniform").set_output(transform = "pandas")
-
-    ## Normalize variables
-    numerical_columns = ["age"]
-    categorical_columns = ["woonvorm_2020", "cf20m003"]
-        
-    categorical_preprocessor = OneHotEncoder(handle_unknown="ignore")
-    numerical_preprocessor = StandardScaler()
-
-    preprocessor = ColumnTransformer([
-    ('one-hot-encoder', categorical_preprocessor, categorical_columns),
-    ('standard_scaler', numerical_preprocessor, numerical_columns)])
     
     # Load the model
-    #model = joblib.load(model_path)
-    model = make_pipeline(imputer, preprocessor, LogisticRegression(max_iter=500))
-
+    model = joblib.load(model_path)
+    
     # Preprocess the fake / holdout data
     df = clean_df(df, background_df)
 
