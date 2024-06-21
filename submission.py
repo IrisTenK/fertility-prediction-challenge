@@ -20,6 +20,7 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import joblib
 
+
 def clean_df(df, background_df=None):
     """
     Preprocess the input dataframe to feed the model.
@@ -50,6 +51,7 @@ def clean_df(df, background_df=None):
     df = df[keepcols]
 
     return df
+
 
 def predict_outcomes(df, background_df=None, model_path="model.joblib"):
     """Generate predictions using the saved model and the input dataframe.
