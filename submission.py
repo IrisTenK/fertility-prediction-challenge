@@ -38,9 +38,6 @@ def clean_df(df, background_df=None):
     # Create new variable with age
     df["age"] = 2024 - df["birthyear_bg"]
 
-    # Imputing missing values in age with the mean
-    df["age"] = df["age"].fillna(df["age"].mean())
-
     # Selecting variables for modelling
     keepcols = [
         "nomem_encr",  # ID variable required for predictions,
@@ -49,6 +46,9 @@ def clean_df(df, background_df=None):
 
     # Keeping data with variables selected
     df = df[keepcols]
+
+    # Select variables in which the outcome is available
+    df = df[df.outcome_available == 1]
 
     return df
 
