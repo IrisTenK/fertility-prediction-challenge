@@ -46,7 +46,7 @@ def train_save_model(cleaned_df, outcome_df):
 
 
     # Fit the model
-    model.fit(model_df[['age', 'woonvorm_2020']], model_df['new_child'])
+    model.fit(model_df[['age', 'woonvorm_2020', "cf20m003"]], model_df['new_child'])
 
     # Save the model
     joblib.dump(model, "model.joblib")
