@@ -20,7 +20,6 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import joblib
 
-
 def clean_df(df, background_df=None):
     """
     Preprocess the input dataframe to feed the model.
@@ -38,35 +37,19 @@ def clean_df(df, background_df=None):
     # Create new variable with age
     df["age"] = 2024 - df["birthyear_bg"]
 
+    # Imputing missing values in age with the mean
+    df["age"] = df["age"].fillna(df["age"].mean())
+
     # Selecting variables for modelling
     keepcols = [
         "nomem_encr",  # ID variable required for predictions,
-        "age"          # newly created variable,
-        #"cf20m003",    # gender 2020,
-        #"cf20m004",     # age2020
-        #"cf20m013",     # parentsDivorced2020
-        #"cf20m014",     # ageWhenParentsDivorced2020
-        #"cf20m015",     # fatherLivingTogether2020
-        #"cf20m016",     # motherLivingTogether2020
-        #"cf20m020",     # contactWithFather2020
-        #"cf20m022",     # contactWithMother2020
-        #"cf20m024",     # partner2020
-        #"cf20m025",     # livetogether2020
-        #"cf20m027",     # birthplacePartner2020
-        #"burgstat_2020",# civilStatus2020
-        #"birthyear_bg", # birthYear2020
-        #"woonvorm_2020",# domesticSituation2020
-        #"oplmet_2020"   # educationLevel2020 
-    ]                  
+        "age"          # newly created variable
+    ] 
 
     # Keeping data with variables selected
-    df <- df[ , keepcols ]
-
-    # Select variables in which the outcome is available
-    #df = df[df.outcome_available == 1]
+    df = df[keepcols]
 
     return df
-
 
 def predict_outcomes(df, background_df=None, model_path="model.joblib"):
     """Generate predictions using the saved model and the input dataframe.
