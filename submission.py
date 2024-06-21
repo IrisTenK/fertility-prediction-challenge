@@ -44,7 +44,8 @@ def clean_df(df, background_df=None):
     # Selecting variables for modelling
     keepcols = [
         "nomem_encr",  # ID variable required for predictions,
-        "age"          # newly created variable
+        "age",          # newly created variable,
+        "woonvorm_2020"
     ] 
 
     # Keeping data with variables selected
