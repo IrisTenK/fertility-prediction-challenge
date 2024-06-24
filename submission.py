@@ -18,10 +18,6 @@ run.py can be used to test your submission.
 # List your libraries and modules here. Don't forget to update environment.yml!
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.impute import KNNImputer
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
 import joblib
 
 
@@ -48,9 +44,7 @@ def clean_df(df, background_df=None):
     # Selecting variables for modelling
     keepcols = [
         "nomem_encr",  # ID variable required for predictions,
-        "age",          # newly created variable,
-        "woonvorm_2020",
-        "cf20m003"
+        "age"          # newly created variable
     ] 
 
     # Keeping data with variables selected
@@ -83,10 +77,10 @@ def predict_outcomes(df, background_df=None, model_path="model.joblib"):
     ## This script contains a bare minimum working example
     if "nomem_encr" not in df.columns:
         print("The identifier variable 'nomem_encr' should be in the dataset")
-    
+
     # Load the model
     model = joblib.load(model_path)
-    
+
     # Preprocess the fake / holdout data
     df = clean_df(df, background_df)
 

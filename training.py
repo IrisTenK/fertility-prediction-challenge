@@ -26,27 +26,11 @@ def train_save_model(cleaned_df, outcome_df):
     # Filter cases for whom the outcome is not available
     model_df = model_df[~model_df['new_child'].isna()]  
     
-    ## Create imputer to impute missing values in the pipeline
-    imputer = KNNImputer(n_neighbors=2, weights="uniform").set_output(transform = "pandas")
-
-    ## Normalize variables
-    numerical_columns = ["age"]
-    categorical_columns = ["woonvorm_2020", "cf20m003"]
-        
-    categorical_preprocessor = OneHotEncoder(handle_unknown="ignore")
-    numerical_preprocessor = StandardScaler()
-
-    preprocessor = ColumnTransformer([
-    ('one-hot-encoder', categorical_preprocessor, categorical_columns),
-    ('standard_scaler', numerical_preprocessor, numerical_columns)])
-    
     # Logistic regression model
-    #model = LogisticRegression()
-    model = make_pipeline(imputer, preprocessor, LogisticRegression(max_iter=500))
-
+    model = LogisticRegression()
 
     # Fit the model
-    model.fit(model_df[['age', 'woonvorm_2020', "cf20m003"]], model_df['new_child'])
+    model.fit(model_df[['age', "cf20m003"]], model_df['new_child'])
 
     # Save the model
     joblib.dump(model, "model.joblib")
