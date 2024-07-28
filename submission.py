@@ -17,9 +17,16 @@ run.py can be used to test your submission.
 
 # List your libraries and modules here. Don't forget to update environment.yml!
 import pandas as pd
+import numpy as np
 from sklearn.linear_model import LogisticRegression
-import joblib
+from sklearn.impute import KNNImputer, SimpleImputer
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler, OrdinalEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.utils import resample
 from scipy import stats
+import joblib
+import os
 
 def clean_df(df, background_df=None):
     """
@@ -56,10 +63,11 @@ def clean_df(df, background_df=None):
     df['variability_NumberChildren'] = df[columns].apply(stats.zscore, axis=1).std(axis=1)
 
     # Selecting variables for modelling
-    keepcols = [
-        "nomem_encr",  # ID variable required for predictions,
-        "age"          # newly created variable
-    ] 
+    keepcols = ["nomem_encr", "woonvorm_2020", 'cf20m024', 'cf20m029', "cf20m128", "cf20m129","years_partner",
+                "cf20m130", "birthyear_bg","nettohh_f_2020", "ci20m379", "cf20m013","cf20m020", "cf20m022",
+                "cf20m025", 'ch20m219', "burgstat_2020","gender_bg", "migration_background_bg",
+                "oplmet_2020","ci20m006","ci20m007",'cr20m093',"cv20l041","cv20l043","cv20l044","age_bg","age_sq",
+                "variability_moreChildren", 'variability_NumberChildren'] 
 
     # Keeping data with variables selected
     df = df[keepcols]
