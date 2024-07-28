@@ -19,7 +19,7 @@ run.py can be used to test your submission.
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import joblib
-
+from scipy import stats
 
 def clean_df(df, background_df=None):
     """
