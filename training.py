@@ -79,4 +79,4 @@ def train_save_model(cleaned_df, outcome_df):
                 "variability_moreChildren", 'variability_NumberChildren']], data_upsampled['new_child'])
 
     # Save the model
-    joblib.dump(model_HG, "model.joblib")
+    joblib.dump(model_HG, "model_HG.joblib")
