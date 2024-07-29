@@ -16,26 +16,9 @@ import joblib
 import os
 
 
-# In[2]:
 
 
 print(np.__version__)
-
-
-# In[67]:
-
-
-df=pd.read_csv('/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_data.csv', low_memory=False)
-df.head()
-
-
-# In[68]:
-
-
-outcomes_df=pd.read_csv("/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_outcome.csv", low_memory=False)
-
-
-# In[69]:
 
 
 def clean_df(df, background_df=None):
@@ -194,10 +177,6 @@ def predict_outcomes(df, background_df=None, model_path="model_XG.joblib"):
 
 import pandas as pd
 
-df=pd.read_csv('/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_data.csv', low_memory=False)
-
-#Load outcome data
-outcomes_df=pd.read_csv("/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_outcome.csv", low_memory=False)
 
 ### Run clean df function
 cleaned_df = clean_df(df) 
