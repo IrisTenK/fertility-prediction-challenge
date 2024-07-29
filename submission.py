@@ -75,7 +75,7 @@ def clean_df(df, background_df=None):
     return df
 
 
-def predict_outcomes(df, background_df=None, model_path="model_HG.joblib"):
+def predict_outcomes(df, background_df=None, model_path="model.joblib"):
     """Generate predictions using the saved model and the input dataframe.
 
     The predict_outcomes function accepts a Pandas DataFrame as an argument
