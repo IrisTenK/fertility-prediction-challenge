@@ -22,19 +22,6 @@ import os
 print(np.__version__)
 
 
-# In[67]:
-
-
-df=pd.read_csv('/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_data.csv', low_memory=False)
-df.head()
-
-
-# In[68]:
-
-
-outcomes_df=pd.read_csv("/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_outcome.csv", low_memory=False)
-
-
 # In[69]:
 
 
@@ -141,7 +128,7 @@ def train_save_model(cleaned_df, outcomes_df):
 # In[77]:
 
 
-def predict_outcomes(df, background_df=None, model_path="model_XG.joblib"):
+def predict_outcomes(df, background_df=None, model_path="model_HG.joblib"):
     """Generate predictions using the saved model and the input dataframe.
 
     The predict_outcomes function accepts a Pandas DataFrame as an argument
@@ -187,26 +174,6 @@ def predict_outcomes(df, background_df=None, model_path="model_XG.joblib"):
     return df_predict
 
 
-# In[78]:
-
-
-#Load the background data
-
-import pandas as pd
-
-df=pd.read_csv('/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_data.csv', low_memory=False)
-
-#Load outcome data
-outcomes_df=pd.read_csv("/Users/iristenklooster/Summer School Odissei/63a7cb3e-b957-4786-90ef-18b48327f282/training_data/PreFer_train_outcome.csv", low_memory=False)
-
-### Run clean df function
-cleaned_df = clean_df(df) 
-
-### Train and save model
-train_save_model(cleaned_df ,outcomes_df)
-
-
-# In[ ]:
 
 
 
